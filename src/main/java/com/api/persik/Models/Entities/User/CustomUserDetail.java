@@ -1,6 +1,5 @@
 package com.api.persik.Models.Entities.User;
 
-import com.api.persik.Models.Entities.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,8 +17,8 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        UserRole role = user.getUserRole();
-        return Collections.singleton(new SimpleGrantedAuthority(role.getRole()));
+        String role = user.getUserRole();
+        return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
     @Override

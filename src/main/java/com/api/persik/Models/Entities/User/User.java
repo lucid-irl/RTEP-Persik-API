@@ -1,12 +1,9 @@
 package com.api.persik.Models.Entities.User;
 
-import com.api.persik.Models.Entities.UserRole;
-
 import javax.persistence.*;
 import java.time.Instant;
 
 @Table(name = "user", indexes = {
-        @Index(name = "user_role_id", columnList = "user_role_id"),
         @Index(name = "user_status_id", columnList = "user_status_id")
 })
 @Entity
@@ -37,9 +34,8 @@ public class User {
     @Column(name = "is_approved")
     private Boolean isApproved;
 
-    @ManyToOne
-    @JoinColumn(name = "user_role_id")
-    private UserRole userRole;
+    @Column(name = "user_role")
+    private String userRole;
 
     @ManyToOne
     @JoinColumn(name = "user_status_id")
@@ -53,11 +49,11 @@ public class User {
         this.userStatus = userStatus;
     }
 
-    public UserRole getUserRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(UserRole userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
 
